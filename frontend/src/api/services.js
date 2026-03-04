@@ -69,3 +69,14 @@ export const adminService = {
     updateUserRole: (id, data) => API.put(`/admin/users/${id}/role`, data),
     deleteUser: (id) => API.delete(`/admin/users/${id}`),
 };
+
+// Upload
+export const uploadService = {
+    uploadImage: (file) => {
+        const formData = new FormData();
+        formData.append('image', file);
+        return API.post('/upload', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        });
+    }
+};

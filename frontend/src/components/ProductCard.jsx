@@ -1,96 +1,88 @@
-import { Link } from 'react-router-dom';
-import { FiShoppingCart, FiHeart } from 'react-icons/fi';
-import { FaHeart, FaStar } from 'react-icons/fa';
-import { useAuth } from '../context/AuthContext';
+import { Link, useNavigate } from 'react-router-dom';
+import { FiHeart, FiShoppingCart } from 'react-icons/fi';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
+import { useAuth } from '../context/AuthContext';
+import { formatPrice } from '../utils/format';
 import toast from 'react-hot-toast';
 import './ProductCard.css';
 
+const API_BASE = 'http://localhost:8000';
+
 export default function ProductCard({ product }) {
-    const { user } = useAuth();
     const { addToCart } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
+    const { user } = useAuth();
+    const navigate = useNavigate();
 
     const inWishlist = isInWishlist(product.id);
 
     const handleAddToCart = async (e) => {
         e.preventDefault();
         e.stopPropagation();
-        if (!user) {
-            toast.error('Please login to add items to cart');
-            return;
-        }
+        if (!user) return navigate('/login');
         try {
             await addToCart(product.id);
             toast.success('Added to cart!');
         } catch (err) {
-            toast.error(err.response?.data?.message || 'Failed to add to cart');
+            toast.error(err.response?.data?.message || 'Failed to add');
         }
     };
 
-    const handleToggleWishlist = async (e) => {
+    const handleWishlist = async (e) => {
         e.preventDefault();
         e.stopPropagation();
-        if (!user) {
-            toast.error('Please login to use wishlist');
-            return;
-        }
+        if (!user) return navigate('/login');
         try {
-            const res = await toggleWishlist(product.id);
-            toast.success(res.added ? 'Added to wishlist!' : 'Removed from wishlist');
+            await toggleWishlist(product.id);
+            toast.success(inWishlist ? 'Removed from wishlist' : 'Added to wishlist');
         } catch (err) {
-            toast.error('Failed to update wishlist');
+            toast.error('Failed');
         }
     };
 
-    const discount = product.sale_price
-        ? Math.round(((product.price - product.sale_price) / product.price) * 100)
-        : 0;
+    const discount = product.sale_price ? Math.round((1 - product.sale_price / product.price) * 100) : 0;
+
+    const imageUrl = product.image_url ? `${API_BASE}${product.image_url}` : null;
 
     return (
         <Link to={`/product/${product.id}`} className="product-card card">
-            <div className="product-image-wrapper">
-                <div className="product-image-placeholder">
-                    <span className="product-emoji">📦</span>
-                </div>
-                {discount > 0 && (
-                    <span className="product-discount-badge">-{discount}%</span>
+            <div className="product-card-image">
+                {imageUrl ? (
+                    <img src={imageUrl} alt={product.name} className="product-img" />
+                ) : (
+                    <div className="product-card-placeholder">📦</div>
                 )}
-                <div className="product-actions-overlay">
-                    <button className={`product-action-btn ${inWishlist ? 'wishlisted' : ''}`} onClick={handleToggleWishlist}>
-                        {inWishlist ? <FaHeart /> : <FiHeart />}
+                {discount > 0 && <span className="discount-badge">{discount}% off</span>}
+                <div className="product-card-actions">
+                    <button className={`product-action-btn ${inWishlist ? 'active' : ''}`} onClick={handleWishlist}>
+                        <FiHeart fill={inWishlist ? '#E63946' : 'none'} />
                     </button>
-                    <button className="product-action-btn" onClick={handleAddToCart}>
+                    <button className="product-action-btn" onClick={handleAddToCart} disabled={product.stock === 0}>
                         <FiShoppingCart />
                     </button>
                 </div>
             </div>
-            <div className="product-info">
-                <p className="product-category">{product.category_name || 'General'}</p>
-                <h3 className="product-name">{product.name}</h3>
-                <div className="product-rating">
-                    {[...Array(5)].map((_, i) => (
-                        <FaStar key={i} className={i < Math.round(product.avg_rating || 0) ? 'star-filled' : 'star-empty-icon'} />
+            <div className="card-body">
+                <p className="product-card-category">{product.category_name}</p>
+                <h3 className="product-card-name">{product.name}</h3>
+                <div className="product-card-rating">
+                    {[1, 2, 3, 4, 5].map(s => (
+                        <span key={s} className={s <= Math.round(product.avg_rating || 0) ? 'star' : 'star star-empty'}>★</span>
                     ))}
-                    <span className="rating-count">({product.total_reviews || 0})</span>
+                    <span className="rating-count">({product.review_count || 0})</span>
                 </div>
-                <div className="product-price-row">
+                <div className="product-card-price">
                     {product.sale_price ? (
                         <>
-                            <span className="price price-sale">${parseFloat(product.sale_price).toFixed(2)}</span>
-                            <span className="price-original">${parseFloat(product.price).toFixed(2)}</span>
+                            <span className="price price-sale">{formatPrice(product.sale_price)}</span>
+                            <span className="price-original">{formatPrice(product.price)}</span>
                         </>
                     ) : (
-                        <span className="price">${parseFloat(product.price).toFixed(2)}</span>
+                        <span className="price">{formatPrice(product.price)}</span>
                     )}
                 </div>
-                {product.stock <= 5 && product.stock > 0 && (
-                    <p className="product-stock-warning">Only {product.stock} left!</p>
-                )}
-                {product.stock === 0 && (
-                    <p className="product-out-of-stock">Out of Stock</p>
-                )}
+                {product.stock === 0 && <span className="out-of-stock">Out of Stock</span>}
             </div>
         </Link>
     );

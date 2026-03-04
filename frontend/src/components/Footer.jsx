@@ -30,8 +30,8 @@ export default function Footer() {
                     <div className="footer-col">
                         <h4 className="footer-title">Contact</h4>
                         <p className="footer-contact"><FiMail /> support@shopverse.com</p>
-                        <p className="footer-contact"><FiPhone /> +1 (555) 123-4567</p>
-                        <p className="footer-contact"><FiMapPin /> 123 Commerce St, NY</p>
+                        <p className="footer-contact"><FiPhone /> +91 74046 44476</p>
+                        <p className="footer-contact"><FiMapPin /> Chandigarh, Punjab, India</p>
                     </div>
                 </div>
                 <div className="footer-bottom">

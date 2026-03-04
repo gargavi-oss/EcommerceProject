@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const http = require('http');
+const path = require('path');
 const { Server } = require('socket.io');
 require('dotenv').config();
 
@@ -23,6 +24,9 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve uploaded images as static files
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // Make io accessible to routes
 app.use((req, res, next) => {
     req.io = io;
@@ -38,6 +42,7 @@ app.use('/api/wishlist', require('./routes/wishlist'));
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/reviews', require('./routes/reviews'));
 app.use('/api/admin', require('./routes/admin'));
+app.use('/api/upload', require('./routes/upload'));
 
 // Health check
 app.get('/api/health', (req, res) => {
