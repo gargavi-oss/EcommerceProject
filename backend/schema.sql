@@ -140,16 +140,16 @@ INSERT INTO categories (name, slug, description) VALUES
 ('Beauty & Health', 'beauty-health', 'Look and feel your best');
 
 -- Insert sample products
-INSERT INTO products (name, slug, description, price, sale_price, stock, category_id, featured) VALUES 
-('Wireless Bluetooth Headphones', 'wireless-bluetooth-headphones', 'Premium noise-cancelling wireless headphones with 30-hour battery life and crystal-clear audio.', 79.99, 59.99, 50, 1, TRUE),
-('Smart Watch Pro', 'smart-watch-pro', 'Advanced smartwatch with health monitoring, GPS, and 7-day battery life.', 199.99, 149.99, 30, 1, TRUE),
-('Cotton Crew Neck T-Shirt', 'cotton-crew-neck-tshirt', 'Soft 100% organic cotton t-shirt available in multiple colors.', 24.99, NULL, 200, 2, FALSE),
-('Denim Jacket Classic', 'denim-jacket-classic', 'Timeless classic denim jacket with modern fit.', 89.99, 69.99, 45, 2, TRUE),
-('Stainless Steel Cookware Set', 'stainless-steel-cookware-set', 'Professional-grade 10-piece stainless steel cookware set.', 149.99, 119.99, 25, 3, TRUE),
-('Bamboo Cutting Board', 'bamboo-cutting-board', 'Eco-friendly bamboo cutting board with juice grooves.', 29.99, NULL, 100, 3, FALSE),
-('JavaScript: The Good Parts', 'javascript-the-good-parts', 'Essential guide to JavaScript programming by Douglas Crockford.', 34.99, 24.99, 60, 4, FALSE),
-('The Art of War', 'the-art-of-war', 'Ancient Chinese military treatise by Sun Tzu.', 12.99, NULL, 150, 4, TRUE),
-('Yoga Mat Premium', 'yoga-mat-premium', 'Extra thick non-slip yoga mat with alignment lines.', 39.99, 29.99, 80, 5, FALSE),
-('Running Shoes Ultra', 'running-shoes-ultra', 'Lightweight running shoes with responsive cushioning.', 129.99, 99.99, 40, 5, TRUE),
-('Vitamin C Serum', 'vitamin-c-serum', 'Brightening face serum with 20% Vitamin C and hyaluronic acid.', 24.99, 19.99, 90, 6, TRUE),
-('Natural Lip Balm Set', 'natural-lip-balm-set', 'Set of 4 organic lip balms in assorted flavors.', 14.99, NULL, 120, 6, FALSE);
+INSERT INTO products (name, slug, description, price, sale_price, stock, category_id, featured, image) VALUES 
+('Wireless Bluetooth Headphones', 'wireless-bluetooth-headphones', 'Premium noise-canceling wireless headphones with 30-hour battery life.', 199.99, 149.99, 50, 1, true, '/uploads/product-headphones.jpg'),
+('Smart Watch Pro', 'smart-watch-pro', 'Fitness tracking, heart rate monitor, and sleep tracking in a sleek design.', 299.99, null, 30, 1, true, '/uploads/product-watch.jpg'),
+('Cotton Crew Neck T-Shirt', 'cotton-crew-neck-tshirt', 'Comfortable 100% organic cotton basic tee for everyday wear.', 24.99, 19.99, 100, 2, false, '/uploads/product-tshirt.jpg'),
+('Denim Jacket Classic', 'denim-jacket-classic', 'Timeless blue denim jacket with a comfortable fit.', 89.99, null, 25, 2, true, '/uploads/product-jacket.jpg'),
+('Stainless Steel Cookware Set', 'stainless-steel-cookware-set', '10-piece professional grade stainless steel pots and pans.', 199.99, 159.99, 15, 3, false, '/uploads/product-cookware.jpg'),
+('Bamboo Cutting Board', 'bamboo-cutting-board', 'Eco-friendly, durable bamboo cutting board for kitchen prep.', 34.99, null, 40, 3, false, '/uploads/product-cuttingboard.jpg'),
+('JavaScript: The Good Parts', 'javascript-the-good-parts', 'Unearthing the Excellence in JavaScript. A must-read for web developers.', 29.99, 24.99, 60, 4, true, '/uploads/product-book-js.jpg'),
+('The Art of War', 'the-art-of-war', 'Ancient Chinese military treatise by Sun Tzu.', 14.99, null, 80, 4, false, '/uploads/product-book-art.jpg'),
+('Yoga Mat Premium', 'yoga-mat-premium', 'Non-slip, eco-friendly 6mm thick yoga mat for all practices.', 45.00, 35.00, 45, 5, true, '/uploads/product-yogamat.jpg'),
+('Running Shoes Ultra', 'running-shoes-ultra', 'Lightweight, breathable running shoes for long distances.', 129.99, 99.99, 20, 5, true, '/uploads/product-shoes.jpg'),
+('Vitamin C Serum', 'vitamin-c-serum', 'Anti-aging facial serum with hyaluronic acid.', 39.99, null, 55, 6, false, '/uploads/product-serum.jpg'),
+('Natural Lip Balm Set', 'natural-lip-balm-set', 'Set of 4 organic beeswax lip balms with natural flavors.', 15.99, 12.99, 120, 6, false, '/uploads/product-lipbalm.jpg');
