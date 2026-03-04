@@ -61,22 +61,6 @@ export default function Home() {
                                     Featured Items
                                 </Link>
                             </div>
-                            <div className="hero-stats">
-                                <div className="stat-item">
-                                    <span className="stat-number">10K+</span>
-                                    <span className="stat-label">Products</span>
-                                </div>
-                                <div className="stat-divider" />
-                                <div className="stat-item">
-                                    <span className="stat-number">50K+</span>
-                                    <span className="stat-label">Happy Customers</span>
-                                </div>
-                                <div className="stat-divider" />
-                                <div className="stat-item">
-                                    <span className="stat-number">99%</span>
-                                    <span className="stat-label">Satisfaction</span>
-                                </div>
-                            </div>
                         </div>
                         <div className="hero-image-container">
                             <div className="hero-image-wrapper">
