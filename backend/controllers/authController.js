@@ -76,6 +76,29 @@ exports.login = async (req, res) => {
             { expiresIn: '7d' }
         );
 
+        // Create login notification
+        try {
+            const notificationMsg = JSON.stringify({
+                customer_name: user.name,
+                customer_email: user.email,
+                action: 'login'
+            });
+
+            await db.query(
+                'INSERT INTO notifications (type, title, message) VALUES (?, ?, ?)',
+                ['new_login', `New login: ${user.name}`, notificationMsg]
+            );
+
+            if (req.io) {
+                req.io.to('admin_room').emit('new_login', {
+                    name: user.name,
+                    email: user.email
+                });
+            }
+        } catch (notifErr) {
+            console.error('Failed to create login notification:', notifErr);
+        }
+
         res.json({
             message: 'Login successful',
             token,

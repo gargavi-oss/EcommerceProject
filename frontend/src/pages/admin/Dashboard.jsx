@@ -41,6 +41,12 @@ export default function Dashboard() {
             loadNotifications();
         });
 
+        socket.on('new_login', (data) => {
+            toast.success(`👤 User logged in: ${data.name}`, { duration: 5000 });
+            setUnreadCount(prev => prev + 1);
+            loadNotifications();
+        });
+
         return () => socket.disconnect();
     }, []);
 
@@ -141,16 +147,19 @@ export default function Dashboard() {
                                                         </div>
                                                         {details && (
                                                             <div className="notification-details">
-                                                                <p><strong>Customer:</strong> {details.customer_name}</p>
-                                                                <p><strong>Email:</strong> {details.customer_email}</p>
-                                                                <p><strong>Phone:</strong> {details.customer_phone}</p>
-                                                                <p><strong>Address:</strong> {details.customer_address}</p>
-                                                                <p><strong>Total:</strong> <span className="notification-total">{formatPrice(details.total)}</span></p>
-                                                                <div className="notification-items">
-                                                                    {details.items?.map((item, i) => (
-                                                                        <span key={i} className="notification-product">{item.name} ×{item.quantity}</span>
-                                                                    ))}
-                                                                </div>
+                                                                {details.customer_name && <p><strong>Customer:</strong> {details.customer_name}</p>}
+                                                                {details.customer_email && <p><strong>Email:</strong> {details.customer_email}</p>}
+                                                                {details.customer_phone && <p><strong>Phone:</strong> {details.customer_phone}</p>}
+                                                                {details.customer_address && <p><strong>Address:</strong> {details.customer_address}</p>}
+                                                                {details.total && <p><strong>Total:</strong> <span className="notification-total">{formatPrice(details.total)}</span></p>}
+
+                                                                {details.items && details.items.length > 0 && (
+                                                                    <div className="notification-items">
+                                                                        {details.items.map((item, i) => (
+                                                                            <span key={i} className="notification-product">{item.name} ×{item.quantity}</span>
+                                                                        ))}
+                                                                    </div>
+                                                                )}
                                                                 {details.notes && <p className="notification-notes"><strong>Notes:</strong> {details.notes}</p>}
                                                             </div>
                                                         )}
