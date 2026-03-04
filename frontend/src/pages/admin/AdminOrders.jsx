@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiShoppingBag, FiPackage, FiUsers, FiTrendingUp } from 'react-icons/fi';
 import { orderService } from '../../api/services';
+import { formatPrice } from '../../utils/format';
 import toast from 'react-hot-toast';
 import './Admin.css';
 
@@ -99,7 +100,7 @@ export default function AdminOrders() {
                                         </div>
                                     </td>
                                     <td>{order.items?.length || 0} items</td>
-                                    <td className="price">${parseFloat(order.total).toFixed(2)}</td>
+                                    <td className="price">{formatPrice(order.total)}</td>
                                     <td>
                                         <select
                                             className="form-input"

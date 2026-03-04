@@ -2,8 +2,11 @@ import { Link } from 'react-router-dom';
 import { FiTrash2, FiShoppingCart, FiHeart } from 'react-icons/fi';
 import { useWishlist } from '../context/WishlistContext';
 import { useCart } from '../context/CartContext';
+import { formatPrice } from '../utils/format';
 import toast from 'react-hot-toast';
 import './Wishlist.css';
+
+const API_BASE = 'http://localhost:8000';
 
 export default function Wishlist() {
     const { wishlistItems, removeFromWishlist } = useWishlist();
@@ -54,18 +57,22 @@ export default function Wishlist() {
                     {wishlistItems.map(item => (
                         <div key={item.id} className="wishlist-card card">
                             <div className="wishlist-image">
-                                <span>📦</span>
+                                {item.image ? (
+                                    <img src={`${API_BASE}${item.image}`} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                ) : (
+                                    <span>📦</span>
+                                )}
                             </div>
                             <div className="card-body">
                                 <Link to={`/product/${item.product_id}`} className="wishlist-name">{item.name}</Link>
                                 <div className="wishlist-price">
                                     {item.sale_price ? (
                                         <>
-                                            <span className="price price-sale">${parseFloat(item.sale_price).toFixed(2)}</span>
-                                            <span className="price-original">${parseFloat(item.price).toFixed(2)}</span>
+                                            <span className="price price-sale">{formatPrice(item.sale_price)}</span>
+                                            <span className="price-original">{formatPrice(item.price)}</span>
                                         </>
                                     ) : (
-                                        <span className="price">${parseFloat(item.price).toFixed(2)}</span>
+                                        <span className="price">{formatPrice(item.price)}</span>
                                     )}
                                 </div>
                                 <div className="wishlist-actions">

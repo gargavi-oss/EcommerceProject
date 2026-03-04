@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FiPlus, FiEdit2, FiTrash2, FiShoppingBag, FiPackage, FiUsers, FiTrendingUp, FiX } from 'react-icons/fi';
-import { productService, categoryService } from '../../api/services';
+import { FiPlus, FiEdit2, FiTrash2, FiShoppingBag, FiPackage, FiUsers, FiTrendingUp, FiX, FiUploadCloud } from 'react-icons/fi';
+import { productService, categoryService, uploadService } from '../../api/services';
 import toast from 'react-hot-toast';
 import './Admin.css';
 
@@ -11,7 +11,10 @@ export default function AdminProducts() {
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const [editing, setEditing] = useState(null);
-    const [form, setForm] = useState({ name: '', description: '', price: '', sale_price: '', stock: '', category_id: '', featured: false });
+    const [uploading, setUploading] = useState(false);
+    const [form, setForm] = useState({ name: '', description: '', price: '', sale_price: '', stock: '', category_id: '', featured: false, image: '' });
+
+    const API_BASE = 'http://localhost:8000';
 
     useEffect(() => { loadData(); }, []);
 
@@ -32,7 +35,7 @@ export default function AdminProducts() {
 
     const openCreate = () => {
         setEditing(null);
-        setForm({ name: '', description: '', price: '', sale_price: '', stock: '', category_id: '', featured: false });
+        setForm({ name: '', description: '', price: '', sale_price: '', stock: '', category_id: '', featured: false, image: '' });
         setShowModal(true);
     };
 
@@ -45,7 +48,8 @@ export default function AdminProducts() {
             sale_price: product.sale_price || '',
             stock: product.stock,
             category_id: product.category_id || '',
-            featured: product.featured
+            featured: product.featured,
+            image: product.image || ''
         });
         setShowModal(true);
     };
@@ -64,6 +68,21 @@ export default function AdminProducts() {
             loadData();
         } catch (err) {
             toast.error(err.response?.data?.message || 'Failed to save');
+        }
+    };
+
+    const handleImageUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        try {
+            setUploading(true);
+            const res = await uploadService.uploadImage(file);
+            setForm({ ...form, image: res.data.imageUrl });
+            toast.success('Image uploaded!');
+        } catch (err) {
+            toast.error(err.response?.data?.message || 'Failed to upload image');
+        } finally {
+            setUploading(false);
         }
     };
 
@@ -148,6 +167,18 @@ export default function AdminProducts() {
                                 <div className="form-group">
                                     <label className="form-label">Product Name *</label>
                                     <input type="text" className="form-input" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-label">Product Image</label>
+                                    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                                        {form.image && (
+                                            <img src={`${API_BASE}${form.image}`} alt="Preview" style={{ width: 60, height: 60, objectFit: 'cover', borderRadius: 'var(--radius-sm)' }} />
+                                        )}
+                                        <label className="btn btn-outline" style={{ cursor: 'pointer' }}>
+                                            <FiUploadCloud /> {uploading ? 'Uploading...' : 'Upload Image'}
+                                            <input type="file" accept="image/*" onChange={handleImageUpload} style={{ display: 'none' }} disabled={uploading} />
+                                        </label>
+                                    </div>
                                 </div>
                                 <div className="form-group">
                                     <label className="form-label">Description</label>

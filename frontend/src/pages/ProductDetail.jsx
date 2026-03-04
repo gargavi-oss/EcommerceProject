@@ -6,8 +6,11 @@ import { productService, reviewService } from '../api/services';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
+import { formatPrice } from '../utils/format';
 import toast from 'react-hot-toast';
 import './ProductDetail.css';
+
+const API_BASE = 'http://localhost:8000';
 
 export default function ProductDetail() {
     const { id } = useParams();
@@ -102,9 +105,13 @@ export default function ProductDetail() {
 
                 <div className="product-detail">
                     <div className="product-detail-image">
-                        <div className="detail-image-placeholder">
-                            <span className="detail-emoji">📦</span>
-                        </div>
+                        {product.image ? (
+                            <img src={`${API_BASE}${product.image}`} alt={product.name} className="product-img" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'var(--radius-md)' }} />
+                        ) : (
+                            <div className="detail-image-placeholder">
+                                <span className="detail-emoji">📦</span>
+                            </div>
+                        )}
                         {discount > 0 && <span className="detail-discount-badge">-{discount}%</span>}
                     </div>
 
@@ -122,12 +129,12 @@ export default function ProductDetail() {
                         <div className="detail-price">
                             {product.sale_price ? (
                                 <>
-                                    <span className="price price-sale">${parseFloat(product.sale_price).toFixed(2)}</span>
-                                    <span className="price-original">${parseFloat(product.price).toFixed(2)}</span>
+                                    <span className="price price-sale">{formatPrice(product.sale_price)}</span>
+                                    <span className="price-original">{formatPrice(product.price)}</span>
                                     <span className="badge badge-danger">Save {discount}%</span>
                                 </>
                             ) : (
-                                <span className="price">${parseFloat(product.price).toFixed(2)}</span>
+                                <span className="price">{formatPrice(product.price)}</span>
                             )}
                         </div>
 

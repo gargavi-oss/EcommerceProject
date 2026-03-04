@@ -43,7 +43,7 @@ export default function ProductCard({ product }) {
 
     const discount = product.sale_price ? Math.round((1 - product.sale_price / product.price) * 100) : 0;
 
-    const imageUrl = product.image_url ? `${API_BASE}${product.image_url}` : null;
+    const imageUrl = product.image ? `${API_BASE}${product.image}` : null;
 
     return (
         <Link to={`/product/${product.id}`} className="product-card card">

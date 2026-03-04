@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import { FiTrash2, FiMinus, FiPlus, FiShoppingBag, FiArrowRight } from 'react-icons/fi';
 import { useCart } from '../context/CartContext';
+import { formatPrice } from '../utils/format';
 import toast from 'react-hot-toast';
 import './Cart.css';
+
+const API_BASE = 'http://localhost:8000';
 
 export default function Cart() {
     const { cartItems, cartTotal, updateQuantity, removeFromCart, clearCart } = useCart();
@@ -54,18 +57,22 @@ export default function Cart() {
                         {cartItems.map(item => (
                             <div key={item.id} className="cart-item glass">
                                 <div className="cart-item-image">
-                                    <span>📦</span>
+                                    {item.image ? (
+                                        <img src={`${API_BASE}${item.image}`} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                    ) : (
+                                        <span>📦</span>
+                                    )}
                                 </div>
                                 <div className="cart-item-info">
                                     <Link to={`/product/${item.product_id}`} className="cart-item-name">{item.name}</Link>
                                     <div className="cart-item-price">
                                         {item.sale_price ? (
                                             <>
-                                                <span className="price price-sale">${parseFloat(item.sale_price).toFixed(2)}</span>
-                                                <span className="price-original">${parseFloat(item.price).toFixed(2)}</span>
+                                                <span className="price price-sale">{formatPrice(item.sale_price)}</span>
+                                                <span className="price-original">{formatPrice(item.price)}</span>
                                             </>
                                         ) : (
-                                            <span className="price">${parseFloat(item.price).toFixed(2)}</span>
+                                            <span className="price">{formatPrice(item.price)}</span>
                                         )}
                                     </div>
                                 </div>
@@ -76,7 +83,7 @@ export default function Cart() {
                                         <button className="qty-btn" onClick={() => handleUpdateQty(item.id, item.quantity + 1)}><FiPlus /></button>
                                     </div>
                                     <p className="cart-item-total">
-                                        ${((item.sale_price || item.price) * item.quantity).toFixed(2)}
+                                        {formatPrice(((item.sale_price || item.price) * item.quantity))}
                                     </p>
                                     <button className="btn btn-icon btn-danger btn-sm" onClick={() => handleRemove(item.id)}>
                                         <FiTrash2 />
@@ -91,16 +98,16 @@ export default function Cart() {
                         <h3 className="summary-title">Order Summary</h3>
                         <div className="summary-row">
                             <span>Subtotal</span>
-                            <span>${cartTotal.toFixed(2)}</span>
+                            <span>{formatPrice(cartTotal)}</span>
                         </div>
                         <div className="summary-row">
                             <span>Shipping</span>
-                            <span className="free-shipping">{cartTotal >= 50 ? 'FREE' : '$5.99'}</span>
+                            <span className="free-shipping">{cartTotal >= 50 ? 'FREE' : formatPrice(100)}</span>
                         </div>
                         <div className="summary-divider" />
                         <div className="summary-row summary-total">
                             <span>Total</span>
-                            <span>${(cartTotal + (cartTotal >= 50 ? 0 : 5.99)).toFixed(2)}</span>
+                            <span>{formatPrice(cartTotal + (cartTotal >= 50 ? 0 : 100))}</span>
                         </div>
                         <Link to="/checkout" className="btn btn-primary btn-lg cart-checkout-btn">
                             Proceed to Checkout <FiArrowRight />

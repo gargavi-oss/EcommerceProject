@@ -4,6 +4,7 @@ import { FiUsers, FiShoppingBag, FiPackage, FiDollarSign, FiBell, FiTrendingUp }
 import { adminService } from '../../api/services';
 import { io } from 'socket.io-client';
 import { useAuth } from '../../context/AuthContext';
+import { formatPrice } from '../../utils/format';
 import toast from 'react-hot-toast';
 import './Admin.css';
 
@@ -144,7 +145,7 @@ export default function Dashboard() {
                                                                 <p><strong>Email:</strong> {details.customer_email}</p>
                                                                 <p><strong>Phone:</strong> {details.customer_phone}</p>
                                                                 <p><strong>Address:</strong> {details.customer_address}</p>
-                                                                <p><strong>Total:</strong> <span className="notification-total">${details.total}</span></p>
+                                                                <p><strong>Total:</strong> <span className="notification-total">{formatPrice(details.total)}</span></p>
                                                                 <div className="notification-items">
                                                                     {details.items?.map((item, i) => (
                                                                         <span key={i} className="notification-product">{item.name} ×{item.quantity}</span>
@@ -174,7 +175,7 @@ export default function Dashboard() {
                         <div className="stat-card-icon" style={{ background: 'rgba(108, 92, 231, 0.15)', color: 'var(--primary-light)' }}><FiDollarSign /></div>
                         <div className="stat-card-info">
                             <p className="stat-card-label">Total Revenue</p>
-                            <h2 className="stat-card-value">${stats?.total_revenue}</h2>
+                            <h2 className="stat-card-value">{formatPrice(stats?.total_revenue || 0)}</h2>
                         </div>
                     </div>
                     <div className="stat-card glass">
@@ -233,7 +234,7 @@ export default function Dashboard() {
                                             <div>{order.customer_name}</div>
                                             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{order.customer_email}</div>
                                         </td>
-                                        <td className="price">${parseFloat(order.total).toFixed(2)}</td>
+                                        <td className="price">{formatPrice(order.total)}</td>
                                         <td><span className={`badge ${statusColors[order.status]}`}>{order.status}</span></td>
                                         <td style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{new Date(order.created_at).toLocaleDateString()}</td>
                                     </tr>

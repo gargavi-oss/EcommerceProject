@@ -2,7 +2,10 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiPackage } from 'react-icons/fi';
 import { orderService } from '../api/services';
+import { formatPrice } from '../utils/format';
 import './Orders.css';
+
+const API_BASE = 'http://localhost:8000';
 
 const statusColors = {
     pending: 'badge-warning',
@@ -71,7 +74,7 @@ export default function Orders() {
                                     </div>
                                     <div className="order-header-right">
                                         <span className={`badge ${statusColors[order.status]}`}>{order.status}</span>
-                                        <span className="order-total">${parseFloat(order.total).toFixed(2)}</span>
+                                        <span className="order-total">{formatPrice(order.total)}</span>
                                     </div>
                                 </div>
 
@@ -92,10 +95,16 @@ export default function Orders() {
                                 <div className="order-items">
                                     {order.items?.map(item => (
                                         <div key={item.id} className="order-item">
-                                            <div className="order-item-img"><span>📦</span></div>
+                                            <div className="order-item-img">
+                                                {item.image ? (
+                                                    <img src={`${API_BASE}${item.image}`} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                                ) : (
+                                                    <span>📦</span>
+                                                )}
+                                            </div>
                                             <div className="order-item-info">
                                                 <Link to={`/product/${item.product_id}`} className="order-item-name">{item.name}</Link>
-                                                <p className="order-item-meta">Qty: {item.quantity} × ${parseFloat(item.price).toFixed(2)}</p>
+                                                <p className="order-item-meta">Qty: {item.quantity} × {formatPrice(item.price)}</p>
                                             </div>
                                         </div>
                                     ))}
