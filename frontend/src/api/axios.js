@@ -2,9 +2,6 @@ import axios from 'axios';
 
 const API = axios.create({
     baseURL: 'http://localhost:8000/api',
-    headers: {
-        'Content-Type': 'application/json',
-    },
 });
 
 // Request interceptor - attach JWT token
@@ -14,6 +11,12 @@ API.interceptors.request.use(
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
+
+        // Only set application/json if we are not sending FormData
+        if (!(config.data instanceof FormData)) {
+            config.headers['Content-Type'] = 'application/json';
+        }
+
         return config;
     },
     (error) => Promise.reject(error)

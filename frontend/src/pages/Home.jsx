@@ -43,37 +43,49 @@ export default function Home() {
             {/* Hero Section */}
             <section className="hero">
                 <div className="container">
-                    <div className="hero-content">
-                        <div className="hero-badge">✨ New Season Arrivals</div>
-                        <h1 className="hero-title">
-                            Discover Premium<br />
-                            <span className="gradient-text">Shopping Experience</span>
-                        </h1>
-                        <p className="hero-subtitle">
-                            Explore thousands of products from top brands with fast delivery and amazing prices.
-                        </p>
-                        <div className="hero-buttons">
-                            <Link to="/products" className="btn btn-primary btn-lg">
-                                Shop Now <FiArrowRight />
-                            </Link>
-                            <Link to="/products?featured=true" className="btn btn-secondary btn-lg">
-                                Featured Items
-                            </Link>
+                    <div className="hero-grid">
+                        <div className="hero-content">
+                            <div className="hero-badge">✨ New Season Arrivals</div>
+                            <h1 className="hero-title">
+                                Discover Premium<br />
+                                <span className="gradient-text">Shopping Experience</span>
+                            </h1>
+                            <p className="hero-subtitle">
+                                Explore thousands of products from top brands with fast delivery and amazing prices.
+                            </p>
+                            <div className="hero-buttons">
+                                <Link to="/products" className="btn btn-primary btn-lg">
+                                    Shop Now <FiArrowRight />
+                                </Link>
+                                <Link to="/products?featured=true" className="btn btn-secondary btn-lg">
+                                    Featured Items
+                                </Link>
+                            </div>
+                            <div className="hero-stats">
+                                <div className="stat-item">
+                                    <span className="stat-number">10K+</span>
+                                    <span className="stat-label">Products</span>
+                                </div>
+                                <div className="stat-divider" />
+                                <div className="stat-item">
+                                    <span className="stat-number">50K+</span>
+                                    <span className="stat-label">Happy Customers</span>
+                                </div>
+                                <div className="stat-divider" />
+                                <div className="stat-item">
+                                    <span className="stat-number">99%</span>
+                                    <span className="stat-label">Satisfaction</span>
+                                </div>
+                            </div>
                         </div>
-                        <div className="hero-stats">
-                            <div className="stat-item">
-                                <span className="stat-number">10K+</span>
-                                <span className="stat-label">Products</span>
-                            </div>
-                            <div className="stat-divider" />
-                            <div className="stat-item">
-                                <span className="stat-number">50K+</span>
-                                <span className="stat-label">Happy Customers</span>
-                            </div>
-                            <div className="stat-divider" />
-                            <div className="stat-item">
-                                <span className="stat-number">99%</span>
-                                <span className="stat-label">Satisfaction</span>
+                        <div className="hero-image-container">
+                            <div className="hero-image-wrapper">
+                                <img
+                                    src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=1200"
+                                    alt="Premium Shopping Experience"
+                                    className="hero-main-image"
+                                />
+                                <div className="hero-image-decoration"></div>
                             </div>
                         </div>
                     </div>
