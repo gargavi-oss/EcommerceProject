@@ -1,0 +1,248 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.brand-icon {
+    font-size: 1.6rem;
+}
+
+.navbar-search {
+    flex: 1;
+    max-width: 480px;
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.6rem 1rem 0.6rem 2.5rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    transition: all var(--transition-normal);
+}
+
+.search-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15);
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-link {
+    padding: 0.5rem 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-normal);
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+    background: rgba(108, 92, 231, 0.1);
+}
+
+.nav-icon-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    transition: all var(--transition-normal);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.nav-icon-btn:hover {
+    color: var(--primary-light);
+    background: rgba(108, 92, 231, 0.1);
+}
+
+.cart-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: var(--accent);
+    color: white;
+    font-size: 0.65rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.profile-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    width: 240px;
+    border-radius: var(--radius-md);
+    padding: 0.5rem;
+    animation: fadeIn 0.2s ease;
+    z-index: 100;
+}
+
+.dropdown-header {
+    padding: 0.75rem;
+}
+
+.dropdown-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.dropdown-email {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 0.25rem 0;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+    background: none;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-family);
+}
+
+.dropdown-item:hover {
+    background: rgba(108, 92, 231, 0.1);
+    color: var(--text-primary);
+}
+
+.dropdown-admin {
+    color: var(--primary-light);
+}
+
+.dropdown-logout {
+    color: var(--danger);
+}
+
+.dropdown-logout:hover {
+    background: rgba(225, 112, 85, 0.1);
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .navbar-search {
+        display: none;
+    }
+
+    .nav-link,
+    .auth-buttons {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .mobile-menu {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        border-top: 1px solid var(--border-color);
+        animation: fadeIn 0.2s ease;
+    }
+
+    .mobile-link {
+        padding: 0.75rem 1rem;
+        color: var(--text-secondary);
+        border-radius: var(--radius-sm);
+        font-size: 0.95rem;
+        background: none;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        font-family: var(--font-family);
+        transition: all var(--transition-fast);
+    }
+
+    .mobile-link:hover {
+        background: rgba(108, 92, 231, 0.1);
+        color: var(--text-primary);
+    }
+}

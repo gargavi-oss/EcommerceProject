@@ -1,0 +1,34 @@
+.wishlist-image {
+    aspect-ratio: 1;
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.wishlist-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    transition: color var(--transition-fast);
+}
+
+.wishlist-name:hover {
+    color: var(--primary-light);
+}
+
+.wishlist-price {
+    margin-bottom: 1rem;
+}
+
+.wishlist-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.wishlist-actions .btn-primary {
+    flex: 1;
+}
