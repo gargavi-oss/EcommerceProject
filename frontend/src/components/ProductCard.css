@@ -8,6 +8,8 @@
     position: relative;
     aspect-ratio: 1;
     background: var(--bg-tertiary);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    /* softer inner radiii */
     overflow: hidden;
 }
 
@@ -25,11 +27,13 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--transition-normal);
+    transition: transform var(--transition-slow);
+    /* slower more organic feeling transition */
 }
 
 .product-card:hover .product-card-image img {
-    transform: scale(1.04);
+    transform: scale(1.03);
+    /* slightly smaller, more subtle scale */
 }
 
 .discount-badge {
@@ -97,15 +101,19 @@
 }
 
 .product-card-name {
-    font-size: 0.92rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    /* softer, slightly bigger */
+    font-weight: 700;
     line-height: 1.35;
     margin-bottom: 0.4rem;
     color: var(--text-primary);
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
+    /* fix standard property compatibility lint */
     -webkit-box-orient: vertical;
     overflow: hidden;
+    letter-spacing: -0.01em;
 }
 
 .product-card-rating {
