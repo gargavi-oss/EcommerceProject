@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 const API = axios.create({
-    baseURL: 'http://localhost:8000/api',
+    baseURL: 'https://ecommerceproject-dsrq.onrender.com/api',
 });
 
-// Request interceptor - attach JWT token
 API.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('token');
@@ -22,7 +21,6 @@ API.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
-// Response interceptor - handle auth errors
 API.interceptors.response.use(
     (response) => response,
     (error) => {

@@ -31,7 +31,7 @@ export default function Dashboard() {
         loadNotifications();
 
         // Socket.IO connection
-        const socket = io('http://localhost:8000');
+        const socket = io('https://ecommerceproject-dsrq.onrender.com');
         socket.emit('join_admin');
 
         socket.on('new_order', (data) => {
