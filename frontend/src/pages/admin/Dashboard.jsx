@@ -181,21 +181,21 @@ export default function Dashboard() {
                 {/* Stats Cards */}
                 <div className="stats-grid">
                     <div className="stat-card glass">
-                        <div className="stat-card-icon" style={{ background: 'rgba(108, 92, 231, 0.15)', color: 'var(--primary-light)' }}><FiDollarSign /></div>
+                        <div className="stat-card-icon" style={{ background: 'rgba(61, 90, 128, 0.12)', color: 'var(--primary-light)' }}><FiDollarSign /></div>
                         <div className="stat-card-info">
                             <p className="stat-card-label">Total Revenue</p>
                             <h2 className="stat-card-value">{formatPrice(stats?.total_revenue || 0)}</h2>
                         </div>
                     </div>
                     <div className="stat-card glass">
-                        <div className="stat-card-icon" style={{ background: 'rgba(0, 206, 201, 0.15)', color: 'var(--secondary)' }}><FiPackage /></div>
+                        <div className="stat-card-icon" style={{ background: 'rgba(69, 123, 110, 0.12)', color: 'var(--secondary)' }}><FiPackage /></div>
                         <div className="stat-card-info">
                             <p className="stat-card-label">Total Orders</p>
                             <h2 className="stat-card-value">{stats?.total_orders}</h2>
                         </div>
                     </div>
                     <div className="stat-card glass">
-                        <div className="stat-card-icon" style={{ background: 'rgba(253, 121, 168, 0.15)', color: 'var(--accent)' }}><FiShoppingBag /></div>
+                        <div className="stat-card-icon" style={{ background: 'rgba(196, 91, 62, 0.1)', color: 'var(--accent)' }}><FiShoppingBag /></div>
                         <div className="stat-card-info">
                             <p className="stat-card-label">Products</p>
                             <h2 className="stat-card-value">{stats?.total_products}</h2>

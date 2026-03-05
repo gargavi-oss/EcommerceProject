@@ -46,12 +46,12 @@
 }
 
 .admin-nav-item:hover {
-    background: rgba(108, 92, 231, 0.1);
+    background: rgba(61, 90, 128, 0.08);
     color: var(--text-primary);
 }
 
 .admin-nav-item.active {
-    background: rgba(108, 92, 231, 0.15);
+    background: rgba(61, 90, 128, 0.12);
     color: var(--primary-light);
     font-weight: 600;
 }
@@ -178,11 +178,11 @@
 }
 
 .notification-item:hover {
-    background: rgba(108, 92, 231, 0.05);
+    background: rgba(61, 90, 128, 0.04);
 }
 
 .notification-item.unread {
-    background: rgba(108, 92, 231, 0.08);
+    background: rgba(61, 90, 128, 0.06);
     border-left: 3px solid var(--primary);
 }
 

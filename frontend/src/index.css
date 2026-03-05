@@ -4,55 +4,54 @@
    CSS Custom Properties — Warm Light Theme
    ============================================ */
 :root {
-  /* Brand Colors */
-  --primary: #FF6B35;
-  --primary-light: #FF8F5E;
-  --primary-dark: #E85520;
-  --secondary: #2EC4B6;
-  --secondary-light: #63D9CE;
-  --accent: #E63946;
-  --accent-light: #F07078;
+  /* Brand Colors — mature, sophisticated palette */
+  --primary: #3D5A80;
+  --primary-light: #5B7BA5;
+  --primary-dark: #2C4460;
+  --secondary: #457B6E;
+  --secondary-light: #5FA394;
+  --accent: #C45B3E;
+  --accent-light: #D4785F;
 
-  /* Backgrounds — warm light tones */
-  --bg-primary: #FCFAF8;
-  /* Softer, warmer paper-like cream */
+  /* Backgrounds — warm, muted off-whites */
+  --bg-primary: #FAF9F7;
   --bg-secondary: #FFFFFF;
-  --bg-tertiary: #F7F5F0;
+  --bg-tertiary: #F3F1ED;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #FFFDFB;
-  --bg-input: #FCFBF9;
-  --bg-overlay: rgba(30, 20, 15, 0.4);
-  /* Warmer overlay */
+  --bg-card-hover: #FDFCFA;
+  --bg-input: #F6F5F2;
+  --bg-overlay: rgba(20, 18, 16, 0.5);
 
-  /* Text */
-  --text-primary: #1C1917;
-  --text-secondary: #57534E;
-  --text-muted: #A8A29E;
-  --text-accent: #FF6B35;
+  /* Text — warm charcoal tones */
+  --text-primary: #2D2926;
+  --text-secondary: #5C564F;
+  --text-muted: #9B9590;
+  --text-accent: #3D5A80;
 
-  /* Status */
-  --success: #2D9B5A;
-  --warning: #E6A817;
-  --danger: #D63031;
-  --info: #0984E3;
+  /* Status — refined tones */
+  --success: #2E7D5B;
+  --warning: #C98C1D;
+  --danger: #B83A3A;
+  --info: #3D7DC4;
 
-  /* Borders */
-  --border-color: rgba(28, 25, 23, 0.08);
-  /* slightly warmer grey */
-  --border-light: rgba(28, 25, 23, 0.04);
+  /* Borders — subtle warm grey */
+  --border-color: rgba(45, 41, 38, 0.1);
+  --border-light: rgba(45, 41, 38, 0.05);
 
-  /* Shadows - Layered, diffuse, "human" feel */
-  --shadow-sm: 0 2px 8px -2px rgba(28, 25, 23, 0.05), 0 1px 4px -1px rgba(28, 25, 23, 0.03);
-  --shadow-md: 0 8px 24px -6px rgba(28, 25, 23, 0.08), 0 4px 12px -3px rgba(28, 25, 23, 0.04);
-  --shadow-lg: 0 16px 32px -8px rgba(28, 25, 23, 0.12), 0 8px 16px -4px rgba(28, 25, 23, 0.06);
-  --shadow-glow: 0 8px 24px -6px rgba(255, 107, 53, 0.25);
+  /* Shadows — deep, layered, elegant */
+  --shadow-sm: 0 1px 3px rgba(45, 41, 38, 0.04), 0 2px 8px -2px rgba(45, 41, 38, 0.06);
+  --shadow-md: 0 4px 16px -4px rgba(45, 41, 38, 0.1), 0 8px 24px -8px rgba(45, 41, 38, 0.06);
+  --shadow-lg: 0 12px 40px -12px rgba(45, 41, 38, 0.16), 0 6px 20px -6px rgba(45, 41, 38, 0.08);
+  --shadow-xl: 0 24px 56px -16px rgba(45, 41, 38, 0.2);
+  --shadow-glow: 0 8px 28px -6px rgba(61, 90, 128, 0.25);
 
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #FF6B35, #FF8F5E);
-  --gradient-secondary: linear-gradient(135deg, #2EC4B6, #63D9CE);
-  --gradient-accent: linear-gradient(135deg, #E63946, #F07078);
-  --gradient-dark: linear-gradient(135deg, #1A1A2E, #16213E);
-  --gradient-card: linear-gradient(145deg, #FFFFFF, #FEFCF9);
+  /* Gradients — elegant and muted */
+  --gradient-primary: linear-gradient(135deg, #3D5A80 0%, #5B7BA5 100%);
+  --gradient-secondary: linear-gradient(135deg, #457B6E, #5FA394);
+  --gradient-accent: linear-gradient(135deg, #C45B3E, #D4785F);
+  --gradient-dark: linear-gradient(135deg, #1E2A3A, #2C3E50);
+  --gradient-card: linear-gradient(165deg, #FFFFFF 0%, #FDFCFA 100%);
+  --gradient-hero: linear-gradient(145deg, rgba(61, 90, 128, 0.05) 0%, rgba(69, 123, 110, 0.04) 100%);
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -63,20 +62,20 @@
   --space-2xl: 3rem;
   --space-3xl: 4rem;
 
-  /* Border Radius - Softer, more organic */
-  --radius-sm: 14px;
-  --radius-md: 24px;
-  --radius-lg: 32px;
-  --radius-xl: 48px;
+  /* Border Radius — refined, not too bubbly */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 36px;
   --radius-full: 9999px;
 
-  /* Font - Outfit provides a much rounder, friendly, humanistic feel */
+  /* Font — Outfit: rounded yet professional */
   --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Transitions */
-  --transition-fast: 0.15s ease;
-  --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
+  /* Transitions — smooth cubic curves */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============================================
@@ -99,12 +98,18 @@ html {
 body {
   font-family: var(--font-family);
   background-color: var(--bg-primary);
-  /* Adding a very subtle noise pattern for texturing (human touch visual cue) */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
   color: var(--text-primary);
-  line-height: 1.65;
-  letter-spacing: -0.015em;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(255, 107, 53, 0.15);
+  color: var(--text-primary);
 }
 
 a {
@@ -187,26 +192,28 @@ ol {
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  padding: 0.8rem 1.6rem;
+  padding: 0.8rem 1.8rem;
   border-radius: var(--radius-full);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   transition: all var(--transition-normal);
   border: none;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  letter-spacing: 0.01em;
 }
 
 .btn-primary {
   background: var(--gradient-primary);
   color: white;
-  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.25);
+  box-shadow: 0 4px 14px -3px rgba(61, 90, 128, 0.35);
 }
 
 .btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(255, 107, 53, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(61, 90, 128, 0.4);
+  filter: brightness(1.08);
 }
 
 .btn-secondary {
@@ -221,13 +228,13 @@ ol {
 }
 
 .btn-danger {
-  background: linear-gradient(135deg, #E63946, #D63031);
+  background: linear-gradient(135deg, #B83A3A, #A03232);
   color: white;
 }
 
 .btn-danger:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+  box-shadow: 0 4px 12px rgba(184, 58, 58, 0.3);
 }
 
 .btn-outline {
@@ -284,7 +291,7 @@ ol {
 
 .form-input {
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1.15rem;
   background: var(--bg-input);
   border: 1.5px solid var(--border-color);
   border-radius: var(--radius-sm);
@@ -295,7 +302,7 @@ ol {
 
 .form-input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+  box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.08), 0 4px 16px -4px rgba(255, 107, 53, 0.12);
   background: #fff;
 }
 
@@ -321,19 +328,18 @@ select.form-input {
    Cards
    ============================================ */
 .card {
-  background: var(--bg-card);
+  background: var(--gradient-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   overflow: hidden;
   transition: all var(--transition-normal);
   box-shadow: var(--shadow-sm);
-  /* Organic feel to cards */
 }
 
 .card:hover {
-  transform: translateY(-4px) rotate(-0.5deg);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-md);
-  border-color: rgba(255, 107, 53, 0.2);
+  border-color: rgba(255, 107, 53, 0.15);
 }
 
 .card-body {
